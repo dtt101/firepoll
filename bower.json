@@ -1,0 +1,22 @@
+{
+  "name": "strawpoll",
+  "version": "0.0.1",
+  "authors": [
+    "A. Nonymous"
+  ],
+  "description": "Simple straw poll application",
+  "license": "BSD-3-Clause",
+  "private": true,  
+  "dependencies": {
+    "jquery": "2.0.3",
+    "backbone": "1.1.0",
+    "underscore": "1.5.2",
+    "backfire": "0.3.0"
+  },  
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "test",
+    "tests"
+  ]
+}
