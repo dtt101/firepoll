@@ -2,7 +2,9 @@
 
 A simple straw poll application using Firebase as a backend.
 
-TODO: Firebase URL is https://farmchat.firebaseio.com/
+Firebase URL is https://strawpoll.firebaseio.com/
+
+Also uses http://mapit.mysociety.org/ postcode api for constituency lookup
 
 ### Development
 

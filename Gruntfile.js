@@ -10,14 +10,6 @@ module.exports = function (grunt) {
 					'js/vendor/underscore/underscore.js',
                     'js/vendor/backbone/backbone.js',
                     'js/vendor/backfire/backbone-firebase.js',
-                    'js/models/message.js',
-                    'js/models/localuser.js',
-                    'js/models/onlineuser.js',
-                    'js/collections/room.js',
-                    'js/views/message.js',
-                    'js/views/room.js',
-                    'js/views/onlineuser.js',
-                    'js/views/users.js',
                     'js/app.js'
 				],
 				dest: 'js/live.concat.js'
@@ -25,7 +17,7 @@ module.exports = function (grunt) {
 		},
 		uglify: {
 			options: {
-				banner: '/* FarmChat by David Thompson for Farm Digital */\n'
+				banner: '/* Straw Poll */\n'
 			},
 			build: {
 				src: 'js/live.concat.js',
