@@ -2,7 +2,7 @@
 var app = app || {};
 
 /**
- * The Vote view handles the voting form
+ * The Vote view handles the voting form and submission
  */
 app.VoteView = Backbone.View.extend({
     el: '#vote',

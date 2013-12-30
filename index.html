@@ -27,7 +27,7 @@ Simple straw poll
                 <form id="frmPostcode" class="pure-form" action="#">
                     <fieldset>
                         <legend>Start by finding your constituency</legend>
-                        <input type="text" id="txtPostcode" placeholder="Postcode">
+                        <input type="text" id="txtPostcode" placeholder="Postcode" required>
                         <button id="btnFind" class="pure-button pure-button-primary" type="submit">Find</button>
                     </fieldset>
                 </form>
@@ -38,14 +38,28 @@ Simple straw poll
         <div class="pure-g-r center-col">
             <div class="pure-u-1">
                 <div id="vote">
-                    VOTE FORM
-                    <form id="frmVote" class="pure-form" action="#">
+                    <form id="frmVote" class="pure-form pure-form-aligned" action="#">
                         <fieldset>
-                            <legend>Vote</legend>
-                            <button id="btnVote" class="pure-button pure-button-primary" type="submit">Vote</button>
+                            <legend>How will you vote?</legend>
+                            <div class="pure-control-group">
+                                <label for="voteIntent">Are you going to vote?</label>
+                                <input type="checkbox" checked>
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="votePref">If so, who for?</label>
+                                <select id="votePref">
+                                    <option>Conservative</option>
+                                    <option>Labour</option>
+                                    <option>Liberal Democrat</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="pure-controls">
+                                <button id="btnVote" class="pure-button pure-button-primary" type="submit">Vote</button>
+                            </div>
                         </fieldset>
-                    </form>                    
-                </div>    
+                    </form>
+                </div>
             </div>
         </div>
     </div>
