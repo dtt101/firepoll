@@ -32,11 +32,12 @@ app.VoteView = Backbone.View.extend({
     addVote: function(e) {
         e.preventDefault();
         // TODO - get form field, get party, get vote type (including no vote 'abstain')
-        var intendToVote = $('#voteIntent').val();
+        var intendToVote = $('#voteIntent').is(':checked')
         var votingPreference = $('#votePref').val();
 
         // set up selection for saving
         var vote = "abstain"; // default is "abstain"
+        console.log(intendToVote);
         if (intendToVote) {
             vote = votingPreference;
         }
@@ -55,8 +56,9 @@ app.VoteView = Backbone.View.extend({
                 return currentData;
             } else {
                 // there is no data so populate the new constituency
-                // TODO: need to increment correct count for first vote
-                return {votes: {labour: 0, conservative: 0,  liberal: 0, other: 0, abstain: 0}, name: self.wmcName};
+                var constituency = {votes: {labour: 0, conservative: 0,  liberal: 0, other: 0, abstain: 0}, name: self.wmcName};
+                constituency.votes[vote]++;
+                return constituency;
             }
         }, function(error, committed, snapshot) {
             // TODO: add user facing error messages
