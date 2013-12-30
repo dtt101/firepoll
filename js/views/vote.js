@@ -40,44 +40,30 @@ app.VoteView = Backbone.View.extend({
         // TODO - get form field, get party, get vote type (including no vote 'abstain')
         // Increment selected party rank by 1.
         console.log(this.wmcId);
+        // TODO: move to this
         var voteRef = new Firebase('https://strawpoll.firebaseio.com/constituencies/' + this.wmcId);
 
-        // TODO: create helper that checks if firebase ref exists
-        // if not then create it with basic list of parties at 0 and our vote - use set
-        // else just increment vote here - use transaction
-
-        // first check if it exists
-        // if so then do transaction
-        // if not then set
-        // Tests to see if /users/<userId> has any data.
-        // console.log('checking existence of ' + this.wmcId);
-        voteRef.once('value', function(snapshot) {
-            console.log('in once callback');
-            console.log(snapshot);
-            var exists = (snapshot.val() !== null);
-            console.log(exists);
+        // make variables available in callback
+        var self = this;
+        voteRef.transaction(function(currentData) {
+            console.log('do we' + self.wmcId);
+            if (currentData !== null) {
+                console.log(currentData);
+                console.log(currentData.votes.conservative);
+                currentData.votes.conservative++;
+                console.log(currentData.votes.conservative);
+                return currentData;
+            } else {
+                // TODO: there is no data here - needs to be created so return an object with our vote
+                //voteRef.set({votes: {labour: 4, conservative: 0}, name: this.wmcName});
+                // this continues the transaction update process
+                return true;
+            }
+        }, function(error, committed, snapshot) {
+            console.log('Was there an error? ' + error);
+            console.log('Did we commit the transaction? ' + committed);
+            console.log('The final value is: ' + snapshot);
         });
-        // voteRef.set({votes: {labour: 4, conservative: 0}, name: this.wmcName});
-        // voteRef.transaction(function(currentVotes) {
-        //     return currentVotes + 1;
-        //     console.log('votes completes');
-        // });
-        // voteRef.transaction(function(currentVotes) {
-        //   if (currentData === null) {
-        //     return 1;
-        //   } else {
-        //     console.log('Data already exists.');
-        //     return; // Abort the transaction.
-        //   }
-        // }, function(error, committed, snapshot) {
-        //   if (error)
-        //     console.log('Transaction failed abnormally!', error);
-        //   else if (!committed)
-        //     console.log('We aborted the transaction (because wilma already exists).');
-        //   else
-        //     console.log('User wilma added!');
-        //   console.log('Wilma\'s data: ', snapshot.val());
-        // });
     }
 
 });
