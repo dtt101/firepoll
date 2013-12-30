@@ -18,48 +18,48 @@ app.VoteView = Backbone.View.extend({
      * @param  {object}  options   a dictionary containing wmcId and wmcName properties
      */
     initialize: function(options) {
-        // set id of user voting constituency
+        // set id and name of user voting constituency
         this.wmcId = options.wmcId;
         this.wmcName = options.wmcName;
-        console.log('init called in vote view');
-        console.log(options.wmcId);
-        console.log(this.wmcId);
-
-        // TODO - set up dynamic collection based on constituency?
-        // TODO - write direct to firebase?
+        this.voteRef = new Firebase('https://strawpoll.firebaseio.com/constituencies/' + this.wmcId);
     },
 
     /**
-     * Handles a vote event, gets data and adds to collection
+     * Handles a vote event, gets data and sends for firebase
      *
      * @param {object}  e   Event information
      */
     addVote: function(e) {
         e.preventDefault();
-        console.log('vote called in vote view');
         // TODO - get form field, get party, get vote type (including no vote 'abstain')
-        // Increment selected party rank by 1.
-        console.log(this.wmcId);
-        // TODO: move to this
+        var intendToVote = $('#voteIntent').val();
+        var votingPreference = $('#votePref').val();
+
+        // set up selection for saving
+        var vote = "abstain"; // default is "abstain"
+        if (intendToVote) {
+            vote = votingPreference;
+        }
+
+        // create firebase reference
         var voteRef = new Firebase('https://strawpoll.firebaseio.com/constituencies/' + this.wmcId);
 
-        // make variables available in callback
+        // make this available in callback
         var self = this;
-        voteRef.transaction(function(currentData) {
-            console.log('do we' + self.wmcId);
+
+        // do a firebase transaction - increment vote, or create new constituency if data not present
+        this.voteRef.transaction(function(currentData) {
             if (currentData !== null) {
-                console.log(currentData);
-                console.log(currentData.votes.conservative);
-                currentData.votes.conservative++;
-                console.log(currentData.votes.conservative);
+                // increment selected option
+                currentData.votes[vote]++;
                 return currentData;
             } else {
-                // TODO: there is no data here - needs to be created so return an object with our vote
-                //voteRef.set({votes: {labour: 4, conservative: 0}, name: this.wmcName});
-                // this continues the transaction update process
-                return true;
+                // there is no data so populate the new constituency
+                // TODO: need to increment correct count for first vote
+                return {votes: {labour: 0, conservative: 0,  liberal: 0, other: 0, abstain: 0}, name: self.wmcName};
             }
         }, function(error, committed, snapshot) {
+            // TODO: add user facing error messages
             console.log('Was there an error? ' + error);
             console.log('Did we commit the transaction? ' + committed);
             console.log('The final value is: ' + snapshot);
