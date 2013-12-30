@@ -20,7 +20,7 @@ Simple straw poll
     <div class="banner">
         <h1 class="banner-head">StrawPoll.</h1>
     </div>
-    <div class="l-content" id="login-container">
+    <div class="l-content" id="postcode-container">
         <div class="pure-g-r center-col">
             <div class="pure-u-1">
                 <p>Are you going to vote? If so, who for?</p>
@@ -34,6 +34,21 @@ Simple straw poll
             </div>
         </div>
     </div>
+    <div class="l-content hidden" id="vote-container">
+        <div class="pure-g-r center-col">
+            <div class="pure-u-1">
+                <div id="vote">
+                    VOTE FORM
+                    <form id="frmVote" class="pure-form" action="#">
+                        <fieldset>
+                            <legend>Vote</legend>
+                            <button id="btnVote" class="pure-button pure-button-primary" type="submit">Vote</button>
+                        </fieldset>
+                    </form>                    
+                </div>    
+            </div>
+        </div>
+    </div>
     <!-- templates -->
     <script id="constituencyTemplate" type="text/template">
         <h5 class="username">@<%- user %></h5>
@@ -42,7 +57,7 @@ Simple straw poll
     <!-- end templates -->
     <!-- javascripts -->
     <script type='text/javascript' src='https://cdn.firebase.com/v0/firebase.js'></script>
-    <script src="js/live.min.js"></script>
+    <script src="js/live.concat.js"></script>
     <!-- end javascripts -->
 	</body>
 </html>

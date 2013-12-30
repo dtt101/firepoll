@@ -10,6 +10,7 @@ module.exports = function (grunt) {
 					'js/vendor/underscore/underscore.js',
                     'js/vendor/backbone/backbone.js',
                     'js/vendor/backfire/backbone-firebase.js',
+                    'js/views/vote.js',
                     'js/app.js'
 				],
 				dest: 'js/live.concat.js'

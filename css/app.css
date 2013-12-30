@@ -2,6 +2,10 @@
 body {
     margin: 10px;
 }
+/* visibility classes */
+.hidden {
+    display:none;
+}
 /* mobile overrides */
 @media only screen and (max-width: 320px) {
 
