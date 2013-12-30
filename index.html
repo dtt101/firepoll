@@ -18,47 +18,26 @@ Simple straw poll
 	</head>
 	<body>
     <div class="banner">
-        <h1 class="banner-head">FarmChat.</h1>
+        <h1 class="banner-head">StrawPoll.</h1>
     </div>
     <div class="l-content" id="login-container">
-      <div class="pure-g-r center-col">
-        <div class="pure-u-1">
-          <p>FarmChat is a demo project built on Backbone.js and Firebase</p>
-          <form id="login-form" class="pure-form" action="#">
-            <button id="login" class="pure-button pure-button-primary pure-button-action">Login with Twitter</button>
-          </form>
+        <div class="pure-g-r center-col">
+            <div class="pure-u-1">
+                <p>Are you going to vote? If so, who for?</p>
+                <form id="frmPostcode" class="pure-form" action="#">
+                    <fieldset>
+                        <legend>Start by finding your constituency</legend>
+                        <input type="text" id="txtPostcode" placeholder="Postcode">
+                        <button id="btnFind" class="pure-button pure-button-primary" type="submit">Find</button>
+                    </fieldset>
+                </form>
+            </div>
         </div>
-      </div>
-    </div>
-
-    <div class="l-content hidden" id="roomview-container">
-      <div class="pure-g-r center-col">
-        <div class="pure-u-2-3">
-          <div id="room">
-            <h2>Talk.</h2>
-            <form class="pure-form" id="addMessage" action="#">
-              <fieldset class="pure-group">
-                <input type="text" placeholder="Message" id="text" class="pure-input-1">
-              </fieldset>
-              <div class="controls">
-                <button id="send" class="pure-button pure-button-primary pure-button-small pure-button-action pure-input-1">Send</button>
-              </div>
-            </form>
-            <div id="messages"></div>
-          </div>
-        </div>
-        <div class="pure-u-1-3" id="users-container">
-          <h2>Online.</h2>
-          <div id="users">
-            <div id="user-list"></div>
-          </div>
-        </div>
-      </div>
     </div>
     <!-- templates -->
-    <script id="messageTemplate" type="text/template">
-      <h5 class="username">@<%- user %></h5>
-      <p><%- text %></p>
+    <script id="constituencyTemplate" type="text/template">
+        <h5 class="username">@<%- user %></h5>
+        <p><%- text %></p>
     </script>
     <!-- end templates -->
     <!-- javascripts -->
