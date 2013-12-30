@@ -31,13 +31,12 @@ app.VoteView = Backbone.View.extend({
      */
     addVote: function(e) {
         e.preventDefault();
-        // TODO - get form field, get party, get vote type (including no vote 'abstain')
+        // get form data
         var intendToVote = $('#voteIntent').is(':checked')
         var votingPreference = $('#votePref').val();
 
         // set up selection for saving
         var vote = "abstain"; // default is "abstain"
-        console.log(intendToVote);
         if (intendToVote) {
             vote = votingPreference;
         }
@@ -48,18 +47,14 @@ app.VoteView = Backbone.View.extend({
         // make this available in callback
         var self = this;
 
-        // do a firebase transaction - increment vote, or create new constituency if data not present
+        // do a firebase transaction - register vote with constituency
         this.voteRef.transaction(function(currentData) {
-            if (currentData !== null) {
-                // increment selected option
-                currentData.votes[vote]++;
-                return currentData;
-            } else {
-                // there is no data so populate the new constituency
-                var constituency = {votes: {labour: 0, conservative: 0,  liberal: 0, other: 0, abstain: 0}, name: self.wmcName};
-                constituency.votes[vote]++;
-                return constituency;
+            if (currentData === null) {
+                // if there is no data we want to create a new constituency
+                currentData = {votes: {labour: 0, conservative: 0,  liberal: 0, other: 0, abstain: 0}, name: self.wmcName};
             }
+            currentData.votes[vote]++;
+            return currentData;
         }, function(error, committed, snapshot) {
             // TODO: add user facing error messages
             console.log('Was there an error? ' + error);
