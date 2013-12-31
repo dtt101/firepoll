@@ -3,15 +3,11 @@
 var app = app || {};
 
 /**
- * app setup and simple postcode lookup handler
+ * main app: postcode lookup and show results handler
  */
 $(function() {
 
-
-    // create a view for questions
-    //http://mikeygee.com/blog/backbone.html
-
-    // handle find button click
+    // handle find button
     $("#btnFind").on("click", function(e) {
         e.preventDefault();
 
@@ -46,5 +42,11 @@ $(function() {
                 console.log("error fetching postcode");
             });
 
+    });
+
+    // handle show results
+    $("#showResults").on("click", function(e) {
+        // TODO: show results view
+        new app.ResultsView();
     });
 });
