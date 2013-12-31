@@ -5,7 +5,7 @@ var app = app || {};
  * The Results view renders messages from FireBase
  */
 app.ResultsView = Backbone.View.extend({
-  el: '#results',
+  el: '#results-container',
 
   /**
    * Set up
@@ -40,10 +40,10 @@ app.ResultsView = Backbone.View.extend({
   renderResult: function(result) {
     console.log("render result called");
     console.log(result);
-    // var messageView = new app.MessageView({
-    //   model: message
-    // });
-    // this.$('#messages').prepend(messageView.render().el);
+    var resultView = new app.ResultView({
+      model: result
+    });
+    this.$('#results-tbody').append(resultView.render().el);
   }
 
 });

@@ -14,6 +14,7 @@ module.exports = function (grunt) {
                     'js/collections/results.js',
                     'js/views/vote.js',
                     'js/views/results.js',
+                    'js/views/result.js',
                     'js/app.js'
 				],
 				dest: 'js/live.concat.js'

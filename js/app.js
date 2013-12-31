@@ -46,7 +46,8 @@ $(function() {
 
     // handle show results
     $("#showResults").on("click", function(e) {
-        // TODO: show results view
+        // show results view
         new app.ResultsView();
+        $('table#results').removeClass('hidden');
     });
 });

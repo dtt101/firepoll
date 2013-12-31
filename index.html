@@ -63,18 +63,39 @@ Simple straw poll
             </div>
         </div>
     </div>
-    <div class="l-content" id="vote-container">
+    <div class="l-content" id="results-container">
         <div class="pure-g-r center-col">
             <div class="pure-u-1">
-                <a href="#" id="showResults">Show results</a>
-                <div id="results"></div>
+                <p>
+                    <a href="#" id="showResults">Show results</a>
+                </p>
+                <table class="pure-table hidden" id="results">
+                    <thead>
+                        <tr>
+                            <th>Constituency</th>
+                            <th>Conservative</th>
+                            <th>Labour</th>
+                            <th>Liberal</th>
+                            <th>Other</th>
+                            <th>Abstentions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="results-tbody">
+
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
     <!-- templates -->
-    <script id="constituencyTemplate" type="text/template">
-        <h5 class="username">@<%- user %></h5>
-        <p><%- text %></p>
+    <script id="resultTemplate" type="text/template">
+        <td><%- name %></td>
+        <td><%- votes.conservative %></td>
+        <td><%- votes.labour %></td>
+        <td><%- votes.liberal %></td>
+        <td><%- votes.other %></td>
+        <td><%- votes.abstain %></td>
     </script>
     <!-- end templates -->
     <!-- javascripts -->
