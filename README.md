@@ -34,6 +34,11 @@ Go to URL
 http://0.0.0.0:8080
 ```
 
+Setup Firebase
+
+Use Forge.
+A single record called 'constituencies' must be created at the root with a value of 0.
+
 ### Test
 
 Run local server
@@ -50,18 +55,20 @@ http://0.0.0.0:8080/tests/index.html
 
 The app is not currently in production.
 
-The Harp server platform could be used to host this application: http://www.harp.io
+Any static file server could hot this application
+
+Potentially the open source Harp server platform: http://www.harp.io
 
 
 ### TODO
 
-1. Create Firebase app
-1. See what happens when data is set to an existing location - can we create and update votes per constituency
-1. If that works then we are go - if not look at django app
-1. Set up postcode lookup with mysociety api using jquery ajax and simple UI
-1. When constituency info found hide postcode search and show questions
-1. Answer to votes is saved by constituency id and name in firebase
-1. Then show results
-1. Results page uses BackFire collection to show all constituency data
-1. Totals can be saved separately or calculated client side?
+1. Calculate total votes on client side
+1. Handle postcode not found with user facing error
+1. Move postcode search into own view, out of app.js
+1. Separate the mapit postcode lookup into a separate javascript class
+1. Refactor to use Backbone.Router so we can use URLS like /vote, /results, /search
+1. Specify the result model
+1. Remove debug
+1. Tests
+
 

@@ -21,7 +21,18 @@ app.VoteView = Backbone.View.extend({
         // set id and name of user voting constituency
         this.wmcId = options.wmcId;
         this.wmcName = options.wmcName;
+        // setup firebase
         this.voteRef = new Firebase('https://strawpoll.firebaseio.com/constituencies/' + this.wmcId);
+        // show constituency
+        this.showConstituencyName(this.wmcName);
+    },
+
+
+    /**
+     * shows constituency name
+     */
+    showConstituencyName: function(name) {
+        this.$('#constituencyName').text(name);
     },
 
     /**
@@ -57,9 +68,9 @@ app.VoteView = Backbone.View.extend({
             return currentData;
         }, function(error, committed, snapshot) {
             // TODO: add user facing error messages
-            console.log('Was there an error? ' + error);
-            console.log('Did we commit the transaction? ' + committed);
-            console.log('The final value is: ' + snapshot);
+            console.log('error? ' + error);
+            console.log('transaction committed? ' + committed);
+            console.log('final value: ' + snapshot);
         });
     }
 
