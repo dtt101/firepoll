@@ -1,4 +1,4 @@
-# FarmChat
+# StrawPoll
 
 A simple straw poll application using Firebase as a backend.
 
