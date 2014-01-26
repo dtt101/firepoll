@@ -1,10 +1,6 @@
-# StrawPoll
+# FirePoll
 
-A simple straw poll application using Firebase as a backend.
-
-Firebase URL is https://strawpoll.firebaseio.com/
-
-Also uses http://mapit.mysociety.org/ postcode api for constituency lookup
+A simple poll application using Firebase as a backend, created as an experiment in static site dev.
 
 ### Development
 
@@ -50,14 +46,6 @@ Got to QUnit test URL
 ```
 http://0.0.0.0:8080/tests/index.html
 ```
-
-### Production
-
-The app is not currently in production.
-
-Any static file server could hot this application
-
-Potentially the open source Harp server platform: http://www.harp.io
 
 
 ### TODO
